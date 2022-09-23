@@ -48,7 +48,7 @@ Alexa skill needs to be configured with StartTimerIntent carrying slot named "mi
 
 When StartTimerIntent is invoked Alexa hosted Lambda function acquires session token from STS and publishes "minutes" from slot to topic "picow" on self hosted IoT Core.
 
-Pico receives "minutes" from IoT Core broker and starts flashing its LED and publishes remaining minutes to topic "remain" evey minute passed that the IoT rule propagates to DynamoDB table "remain" in turn.
+Pico receives "minutes" from IoT Core broker and starts flashing its LED and publishes remaining minutes to topic "remain" every minute passed that the IoT rule propagates to DynamoDB table "remain" in turn.
 
 When QueryTimerIntent is invoked Alexa hosted Lambda function queries last entry in table "remain" on self hosted DynamoDB table "remain".
 
