@@ -1,0 +1,15 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": "iot:Publish",
+            "Resource": "arn:aws:iot:<your_region>:<your_account_id>:topic/picow"
+        },
+        {
+            "Effect": "Allow",
+            "Action": "dynamodb:Query",
+            "Resource": "arn:aws:dynamodb:<your_region>:<your_account_id>:table/remain"
+        }
+    ]
+}

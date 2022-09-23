@@ -1,0 +1,8 @@
+{
+    "Version": "2012-10-17",
+    "Statement": {
+        "Effect": "Allow",
+        "Action": "dynamodb:PutItem",
+        "Resource": "arn:aws:dynamodb:<your_region>:<your_account_id>:table/remain"
+    }
+}
