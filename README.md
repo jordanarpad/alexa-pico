@@ -3,7 +3,7 @@ Alexa controlled visual timer on Raspberry Pi Pico W
 
 High level architecture of this project can be found here:
 
-https://www.amazon.co.uk/photos/share/RsYCsTSNWItWSvomCWTXNmgsz0dJU3opRgWa2sKPpsC
+http://pico-on-aws.s3-website-eu-west-1.amazonaws.com
 
 This project contains python code for Raspberry Pi Pico W and Alexa hosted Lambda function that realise an Alexa controlled visual timer on Raspberry Pi Pico W.
 
