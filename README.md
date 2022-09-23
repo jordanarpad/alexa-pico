@@ -37,7 +37,7 @@ Certificate needs to have iot_certificate_policy.json attached in IoT Core.
 
 IoT Core needs to have a rule defined to populate DynamoDB table "remain" from topic "remain" with partition key "device" value "picow" and sort key "timestamp" value "${timestamp()}.
 
-This rule needs to have a service role with iot_dynamo_policy.json attached in Amazon IAM.
+This rule needs to have a service role with iot_dynamo_policy.json attached in IAM.
 
 Code lambda_function.py requires importable accountid.py module that contains the following variables:
 ```
