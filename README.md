@@ -7,7 +7,7 @@ http://pico-on-aws.s3-website-eu-west-1.amazonaws.com
 
 This project contains python code for Raspberry Pi Pico W and Alexa hosted Lambda function that realise an Alexa controlled visual timer on Raspberry Pi Pico W.
 
-Furthermore this project uses self hosted Amazon IoT Core and Amazon DynamoDB and this respository contains their corresponding policies too.
+Furthermore this project uses self hosted IoT Core and DynamoDB and this respository contains their corresponding policies too.
 
 Pico uses micropython-umqtt.simple to connect to IoT Core that can be installed from REPL with
 ```
