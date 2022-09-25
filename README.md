@@ -50,6 +50,6 @@ When StartTimerIntent is invoked Alexa hosted Lambda function acquires session t
 
 Pico receives "minutes" from IoT Core broker and starts flashing its LED and publishes remaining minutes to topic "remain" every minute passed that the IoT rule propagates to DynamoDB table "remain" in turn.
 
-When QueryTimerIntent is invoked Alexa hosted Lambda function queries last entry in table "remain" on self hosted DynamoDB table "remain".
+When QueryTimerIntent is invoked Alexa hosted Lambda function queries last entry in self hosted DynamoDB table "remain".
 
-Service role assumed for Alexa hosted Lambda function needs to have alexa_hosted_lambda_policy.json attached in IAM of self account with trusted entity trusted_entity_for_assumed_service_role.json containing ARN of Alexa hosted Lambda function.
+Service role assumed for Alexa hosted Lambda function needs to have alexa_hosted_lambda_policy.json attached in IAM of self account. Integration between Alexa hosted lambda function and this service role in IAM of self account is achieved by adding trusted entity trusted_entity_for_assumed_service_role.json containing ARN of Alexa hosted Lambda function.
