@@ -5,6 +5,10 @@ High level architecture of this project can be found here:
 
 http://pico-on-aws.s3-website-eu-west-1.amazonaws.com
 
+Operation is demonstrated in this video:
+
+https://youtu.be/wyhJWvanWCY
+
 This project contains python code for Raspberry Pi Pico W (hereafter Pico) and Alexa hosted Lambda function that realise an Alexa controlled visual timer on Pico.
 
 Furthermore this project uses self hosted IoT Core and DynamoDB and this respository contains their corresponding policies too.
