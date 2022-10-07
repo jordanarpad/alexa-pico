@@ -90,7 +90,7 @@ class QueryTimerIntentHandler(AbstractRequestHandler):
             region_name=accountid.REGION).Table('remain')
         last_entry = dynamodb.query(KeyConditionExpression=Key('device').eq('picow'),ScanIndexForward=False,Limit=1)
         remain = last_entry['Items'][0]['payload']['message']
-        speak_output = "Visual timer has {} minutes left from timer".format(remain)
+        speak_output = "Visual timer has less than {} minutes left from timer".format(remain)
 
         return (
             handler_input.response_builder
