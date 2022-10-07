@@ -7,16 +7,17 @@ http://pico-on-aws.s3-website-eu-west-1.amazonaws.com
 
 Operation is demonstrated in this video:
 
-https://youtu.be/wyhJWvanWCY
+https://youtu.be/BPtGwCS62no
 
 This project contains python code for Raspberry Pi Pico W (hereafter Pico) and Alexa hosted Lambda function that realise an Alexa controlled visual timer on Pico.
 
 Furthermore this project uses self hosted IoT Core and DynamoDB and this respository contains their corresponding policies too.
 
-Pico uses micropython-umqtt.simple to connect to IoT Core that can be installed from REPL with
+Pico uses micropython-tm1637 for 4-digit display and micropython-umqtt.simple to connect to IoT Core that can be installed from REPL with
 ```
 import upip  
-upip.install('umqtt.simple')
+upip.install('micropython-tm1637')
+upip.install('micropython-umqtt.simple')
 ```
 available on latest micropython firmware for Pico from: 
 
