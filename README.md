@@ -7,7 +7,7 @@ http://pico-on-aws.s3-website-eu-west-1.amazonaws.com
 
 Operation is demonstrated in this video:
 
-https://youtu.be/BPtGwCS62no
+https://youtu.be/si_6LJFgOxk
 
 This project contains python code for Raspberry Pi Pico W (hereafter Pico) and Alexa hosted Lambda function that realise an Alexa controlled visual timer on Pico.
 
