@@ -105,8 +105,8 @@ def callback_handler(topic, message_receive):
         print('Published remain')
         print(remain)
         client.publish(topic="remain", msg=json.dumps({"message":str(remain)}))
-        tm.numbers(remain, sec)
         rem.init(mode=Timer.ONE_SHOT, period=60000, callback=update)
+        tm.write([0, 0, 0, 0])
         led.value(1)
     else:
         remain = minutes
@@ -128,8 +128,8 @@ sec = 0
 print('Published remain')
 print(remain)
 client.publish(topic="remain", msg=json.dumps({"message":str(remain)}))
-tm.numbers(remain, sec)
 rem.init(mode=Timer.ONE_SHOT, period=60000, callback=update)
+tm.write([0, 0, 0, 0])
 led.value(1)
 
 
