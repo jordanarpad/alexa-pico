@@ -19,8 +19,7 @@ import upip
 upip.install('micropython-tm1637')
 upip.install('micropython-umqtt.simple')
 ```
-available on latest micropython firmware for Pico from: ![alexa_pico](https://user-images.githubusercontent.com/6145641/194744834-c383e465-de8c-4f48-af24-0662d26b6922.jpg)
-
+available on latest micropython firmware for Pico from:
 
 https://www.raspberrypi.com/documentation/microcontrollers/micropython.html
 
