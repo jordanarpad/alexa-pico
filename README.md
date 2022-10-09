@@ -3,7 +3,7 @@ Alexa controlled visual timer on Raspberry Pi Pico W
 
 High level architecture of this project can be found here:
 
-http://pico-on-aws.s3-website-eu-west-1.amazonaws.com
+![alexa_pico](https://user-images.githubusercontent.com/6145641/194744850-bbeb7948-eff2-47d9-b75a-d23f1b874569.jpg)
 
 Operation is demonstrated in this video:
 
@@ -19,7 +19,8 @@ import upip
 upip.install('micropython-tm1637')
 upip.install('micropython-umqtt.simple')
 ```
-available on latest micropython firmware for Pico from: 
+available on latest micropython firmware for Pico from: ![alexa_pico](https://user-images.githubusercontent.com/6145641/194744834-c383e465-de8c-4f48-af24-0662d26b6922.jpg)
+
 
 https://www.raspberrypi.com/documentation/microcontrollers/micropython.html
 
