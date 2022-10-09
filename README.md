@@ -23,6 +23,10 @@ available on latest micropython firmware for Pico from:
 
 https://www.raspberrypi.com/documentation/microcontrollers/micropython.html
 
+Code main.py implements timer with the help of a single hardware timer of Pico. State machine of timer is described in the following diagram. Solid line state changes are driven by callback from received messages that stored in variable 'rem'. Dashed line state changes are driven by callback from timer and depletion of variable 'sec' every minute.
+
+![timer_state](https://user-images.githubusercontent.com/6145641/194764992-f21fb2f5-c1ea-4704-86fa-35ab9e54660c.jpg)
+
 Code main.py on Pico further requires importable secrets.py module that contains the following variables:
 ```
 SSID = "your_SSID"  
