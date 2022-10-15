@@ -5,27 +5,49 @@ import time
 wlan = network.WLAN(network.STA_IF)
 wlan.active(True)
 wlan.connect(secrets.SSID, secrets.PASSWORD)
+while not wlan.isconnected():
+    time.sleep(0.5)
 
-max_wait = 10
-while max_wait > 0:
-    if wlan.status() < 0 or wlan.status() >= 3:
-        break
-    max_wait -= 1
-    time.sleep(1)
+from umqtt.simple import MQTTClient
+import json
+import ubinascii
 
-if wlan.status() != 3:
-    raise RuntimeError('network connection failed')
+def read_pem(file):
+    with open(file, "r") as input:
+        text = input.read().strip()
+        split_text = text.split("\n")
+        base64_text = "".join(split_text[1:-1])
+        return ubinascii.a2b_base64(base64_text)
+
+def callback_handler(topic, message_receive):
+    global rem, sec, alm
+    tim.init()
+    rem = int(message_receive.decode('UTF-8'))
+    client.publish(topic="remain", msg=json.dumps({"message":str(rem)}))
+    if rem == 0:
+        tm.write([0, 0, 0, 0])
+    if rem > 0:
+        tm.numbers(rem, 0)
+    led.value(1)
+    alm = 0
+    sec = 180
+    tim.init(freq = 3, mode=Timer.PERIODIC, callback=timer_handler)
+
+key = read_pem(secrets.KEY_FILE)
+cert = read_pem(secrets.CERT_FILE)
+client = MQTTClient(
+    client_id="picow",
+    server=secrets.ENDPOINT,
+    keepalive=60,
+    ssl=True,
+    ssl_params={"key": key, "cert": cert}
+)
+client.connect()
+client.set_callback(callback_handler)
+client.subscribe(topic="picow")
 
 from machine import Timer, Pin, PWM
 import tm1637
-from umqtt.simple import MQTTClient
-import json
-
-tim = Timer()
-led = Pin('LED', Pin.OUT)
-buz = PWM(Pin(13))
-buz.freq(500)
-tm = tm1637.TM1637(clk=Pin(27), dio=Pin(28))
 
 def timer_handler(timer):
     global rem, sec, alm
@@ -53,38 +75,11 @@ def timer_handler(timer):
         client.ping()
         sec = 180
 
-def mqtt_connect():
-    endpoint = secrets.ENDPOINT
-    port_no = 8883
-    cert_file = secrets.CERT_FILE
-    key_file = secrets.KEY_FILE
-    with open(cert_file, 'rb') as f:
-        cert = f.read()
-    with open(key_file, 'rb') as f:
-        key = f.read()
-    sslparams = {'cert':cert, 'key':key}
-    client = MQTTClient(client_id='picow', server=endpoint, port=port_no, keepalive=60, ssl=True, ssl_params=sslparams)
-    client.connect()
-    return client
-
-def callback_handler(topic, message_receive):
-    global rem, sec, alm
-    tim.init()
-    rem = int(message_receive.decode('UTF-8'))
-    client.publish(topic="remain", msg=json.dumps({"message":str(rem)}))
-    if rem == 0:
-        tm.write([0, 0, 0, 0])
-    if rem > 0:
-        tm.numbers(rem, 0)
-    led.value(1)
-    alm = 0
-    sec = 180
-    tim.init(freq = 3, mode=Timer.PERIODIC, callback=timer_handler)
-
-client = mqtt_connect()
-client.set_callback(callback_handler)
-client.subscribe(topic="picow")
-
+tim = Timer()
+led = Pin('LED', Pin.OUT)
+buz = PWM(Pin(13))
+buz.freq(500)
+tm = tm1637.TM1637(clk=Pin(27), dio=Pin(28))
 rem = 0
 client.publish(topic="remain", msg=json.dumps({"message":str(rem)}))
 tm.write([0, 0, 0, 0])
