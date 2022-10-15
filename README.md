@@ -32,13 +32,8 @@ Code main.py on Pico further requires importable secrets.py module that contains
 SSID = "your_SSID"  
 PASSWORD = "your_wifi_password"  
 ENDPOINT = "your_iot_core_endpoint"  
-CERT_FILE = "your_der_cert_file"  
-KEY_FILE = "your_der_private_key_file"  
-```
-Please note that certificate and private key downloadable from IoT Core are PEM format. To convert to DER format use:
-```
-openssl rsa -in private.pem.key -out private.der -outform DER  
-openssl x509 -in certificate.pem.crt -out certificate.der -outform DER
+CERT_FILE = "your_pem_cert_file"  
+KEY_FILE = "your_pem_private_key_file"  
 ```
 Once Pico connects with these credentials to self hosted IoT Core endpoint, it subscribes to topic "picow" and publishes initial 0 value to topic "remain".
 
