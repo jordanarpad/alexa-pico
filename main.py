@@ -8,11 +8,11 @@ wlan.connect(secrets.SSID, secrets.PASSWORD)
 while not wlan.isconnected():
     time.sleep(0.5)
 
-from umqtt.simple import MQTTClient
-import json
 import ntptime
 import ubinascii
 import ssl
+import json
+from umqtt.simple import MQTTClient
 
 def read_pem(file):
     with open(file, "r") as input:
@@ -36,20 +36,17 @@ def callback_handler(topic, message_receive):
     tim.init(freq = 3, mode=Timer.PERIODIC, callback=timer_handler)
 
 ntptime.settime()
-key = read_pem(secrets.KEY_FILE)
-cert = read_pem(secrets.CERT_FILE)
-ca = read_pem("AmazonRootCA1.pem")
 client = MQTTClient(
     client_id="picow",
     server=secrets.ENDPOINT,
     keepalive=60,
     ssl=True,
     ssl_params={
-        "key": key,
-        "cert": cert,
+        "key": read_pem(secrets.KEY_FILE),
+        "cert": read_pem(secrets.CERT_FILE),
         "server_hostname": secrets.ENDPOINT,
         "cert_reqs": ssl.CERT_REQUIRED,
-        "cadata": ca
+        "cadata": read_pem("AmazonRootCA1.pem")
     }
 )
 client.connect()
