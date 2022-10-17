@@ -35,11 +35,15 @@ ENDPOINT = "your_iot_core_endpoint"
 CERT_FILE = "your_pem_cert_file"  
 KEY_FILE = "your_pem_private_key_file"  
 ```
+Module "ubinascii" is used to convert pem format certificate to der format. Code is from:
+
+https://www.hackster.io/sandeep-mistry/connect-your-raspberry-pi-pico-w-to-aws-iot-core-8868b7
+
 Once Pico connects with these credentials to self hosted IoT Core endpoint, it subscribes to topic "picow" and publishes initial 0 value to topic "remain".
 
 Certificate needs to have iot_certificate_policy.json attached in IoT Core.
 
-IoT Core needs to have a rule defined to populate DynamoDB table "remain" from topic "remain" with partition key "device" value "picow" and sort key "timestamp" value "${timestamp()}.
+IoT Core needs to have a rule defined to populate DynamoDB table "remain" from topic "remain" with partition key "device" value "picow" and sort key "timestamp" value "${timestamp()}".
 
 This rule needs to have a service role with iot_dynamo_policy.json attached in IAM.
 
