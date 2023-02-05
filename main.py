@@ -35,6 +35,8 @@ def callback_handler(topic, message_receive):
     sec = 180
     tim.init(freq = 3, mode=Timer.PERIODIC, callback=timer_handler)
 
+# optional local NTP server to minimise ntptime.settime() not handling errors
+ntptime.host = 'your_local_NTP_server'
 ntptime.settime()
 client = MQTTClient(
     client_id="picow",
