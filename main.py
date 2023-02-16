@@ -37,7 +37,9 @@ def callback_handler(topic, message_receive):
 
 # optional local NTP server to minimise ntptime.settime() not handling errors
 ntptime.host = 'your_local_NTP_server'
-ntptime.settime()
+rtc = machine.RTC()
+while rtc.datetime()[0] < 2023:
+    ntptime.settime()
 client = MQTTClient(
     client_id="picow",
     server=secrets.ENDPOINT,
