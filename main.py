@@ -32,8 +32,8 @@ def callback_handler(topic, message_receive):
         tm.numbers(rem, 0)
     led.value(1)
     alm = 0
-    sec = 180
-    tim.init(freq = 3, mode=Timer.PERIODIC, callback=timer_handler)
+    sec = 60
+    tim.init(freq = 1, mode=Timer.PERIODIC, callback=timer_handler)
 
 # optional local NTP server to minimise ntptime.settime() not handling errors
 ntptime.host = 'your_local_NTP_server'
@@ -76,15 +76,15 @@ def timer_handler(timer):
             if rem == 0:
                 alm = 1
     if alm == 1:
-        led.toggle()
-        buz.duty_u16(1000)
-        tm.write([0, 0, 0, 0])
-        time.sleep(0.1)
-        tm.numbers(0, 0)
-        buz.duty_u16(0)
+        if sec % 2:
+            tm.write([0, 0, 0, 0])
+            buz.duty_u16(32768)
+        else:
+            tm.numbers(0, 0)
+            buz.duty_u16(0)
     if sec == 0:
         client.ping()
-        sec = 180
+        sec = 60
 
 tim = Timer()
 led = Pin('LED', Pin.OUT)
@@ -96,8 +96,8 @@ client.publish(topic="remain", msg=json.dumps({"message":str(rem)}))
 tm.write([0, 0, 0, 0])
 led.value(1)
 alm = 0
-sec = 180
-tim.init(freq = 3, mode=Timer.PERIODIC, callback=timer_handler)
+sec = 60
+tim.init(freq = 1, mode=Timer.PERIODIC, callback=timer_handler)
 
 while True:
     try:
