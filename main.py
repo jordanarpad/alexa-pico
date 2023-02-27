@@ -24,6 +24,7 @@ def read_pem(file):
 def callback_handler(topic, message_receive):
     global rem, sec, alm
     tim.init()
+    buz.duty_u16(0)
     rem = int(message_receive.decode('UTF-8'))
     client.publish(topic="remain", msg=json.dumps({"message":str(rem)}))
     if rem == 0:
