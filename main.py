@@ -78,10 +78,10 @@ def timer_handler(timer):
                 alm = 1
     if alm == 1:
         if sec % 2:
-            tm.write([0, 0, 0, 0])
+            tm.numbers(0, 0)
             buz.duty_u16(32768)
         else:
-            tm.numbers(0, 0)
+            tm.write([0, 0, 0, 0])
             buz.duty_u16(0)
     if sec == 0:
         client.ping()
