@@ -66,14 +66,11 @@ def timer_handler(timer):
     if sec > 0:
         sec -= 1
     if alm == 0 and rem > 0:
-        if (sec % 2 == 0):
-            led.toggle()
-        if (sec % 3 == 0):
-            tm.numbers(rem-1, sec//3)
+        tm.numbers(rem-1, sec)
         if sec == 0:
             rem -= 1
             client.publish(topic="remain", msg=json.dumps({"message":str(rem)}))
-            sec = 180
+            sec = 60
             if rem == 0:
                 alm = 1
     if alm == 1:
